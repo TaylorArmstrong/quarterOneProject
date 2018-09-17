@@ -62,12 +62,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let inputDist = document.getElementById('dist')
     setDist(inputDist.value)
     renderDist()
+
+    // let inputHikeLon = document.getElementById('hikeLon')
+    // setHikeLon(inputHikeLon.value)
+    // renderHikeLon()
+    //
+    // let inputHikeLat = document.getElementById('hikeLat')
+    // setHikeLat(inputHikeLat.value)
+    // renderHikeLat()
     //**      input data to local storage on Submit     **//
 
     let lat = localStorage.getItem('lat')
     let lon = localStorage.getItem('lon')
     let min = localStorage.getItem('min')
     let dist = localStorage.getItem('dist')
+    // let hikeLon = localStorage.getItem('hikeLon')
+    // let hikeLat = localStorage.getItem('hikeLat')
 
     //**      API - fetch location data from weatherUnlocked.     **//
     let url = `http://api.weatherunlocked.com/api/current/${lat},${lon}?app_id=8e567820&app_key=e231783424f10444f19408b224fbbbb9`
@@ -91,9 +101,59 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let weatherList = document.querySelector('#weatherIcon p.weather-text')
         // console.log('weatherList', weatherList);
         document.getElementById('weatherDescription').innerText = `Your location is latitude: ${latitude}, longitude: ${longitude}. It is ${tempF}° Fahrenheit, but it feels like ${flTempF}° Fahrenheit. You currently have ${visibilityMiles} miles of visibility. The wind is blowing ${windDir} at ${windSpdMph} Mph. The current weather is ${weatherDesc}.`
+        console.log(response.data.wx_desc)
+        if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc === 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy skies') || (response.data.wx_desc === 'Overcast skies')) {
+          //**      Input Difficulty & Distance of Hike     **//
+          let url2 = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${dist}&minLength=${min}&key=112496723-8c25d2a96a12588709652b75e8813b84`
+          axios.get(url2)
+            .then((response) => {
+              let tD = response.data.trails
+              // console.log(response.status)
+              // console.log(response.data)
+              if (response.data.trails.length === 0) {
+                let hikeList = document.getElementById('hikeList')
+                hikeList.innerText = 'No Hikes In This Area!'
+              }
+              //** Input Data into list
+              // loop over data, creating <li>'s inside an <ol>
+              // create ol
+              let ul = document.createElement('ul')
+              // create li
+              for (let i = 0; i < tD.length; i++) {
+                clearContent()
+                let li = document.createElement('li')
+                let a = document.createElement('a')
+                let hikeLat = `${tD[i].latitude}`
+                let hikeLon = `${tD[i].longitude}`
 
-        // if (response.data.wx_desc === 'Partly cloudy') {
-        // //**      Input Difficulty & Distance of Hike     **//
+                li.innerText += `Hike name: ${tD[i].name}, Location: ${tD[i].location}
+                Summary: ${tD[i].summary}
+                Length: ${tD[i].length} miles, Difficulty: ${tD[i].difficulty}
+                Highest Elevation: ${tD[i].high}ft, Lowest Elevation: ${tD[i].low}ft
+                Ascent: ${tD[i].ascent}ft, Descent: ${tD[i].descent}ft
+                Condition Status: ${tD[i].conditionStatus} from ${tD[i].conditionDate}.
+                Voted ${tD[i].stars} stars from ${tD[i].starVotes} reviews.
+                `
+                a.innerText += `More Information
+
+                `
+                let url = `http://api.weatherunlocked.com/api/current/${hikeLat},${hikeLon}?app_id=8e567820&app_key=e231783424f10444f19408b224fbbbb9`
+                axios.get(url)
+                  .then((response) => {
+                    console.log(response.data.wx_desc)
+                    li.innerText += `Local Weather: ${response.data.wx_desc}`
+                  })
+                a.href += `${tD[i].url}`
+                ul.appendChild(li)
+                ul.appendChild(a)
+              }
+              hikeList.appendChild(ul)
+              //** Input Data into list
+            }) } else {
+            //**      Input Difficulty & Distance of Hike     **//
+
+
+        //**      Input Difficulty & Distance of Hike     **//
         // let url3 = ``
         // axios.get(url3)
         //   .then((response) => {
@@ -126,58 +186,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         //
         //     //** Input Data into list
         //   })
-        // }
-        //     return document.getElementById('hikeList').innerText = 'Find A Movie'
-        //   }
-
-        //**API
-
-        //**      Input Difficulty & Distance of Hike     **//
-        let url2 = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${dist}&minLength=${min}&key=112496723-8c25d2a96a12588709652b75e8813b84`
-        axios.get(url2)
-          .then((response) => {
-            let tD = response.data.trails
-            // console.log(response.status)
-            // console.log(response.data)
-            // console.log(response.data.trails.length)
-            // console.log(response.data.trails['0'].name)
-            if (response.data.trails.length === 0) {
-              let hikeList = document.getElementById('hikeList')
-              hikeList.innerText = 'No Hikes In This Area!'
-            }
-            //** Input Data into list
-            // loop over data, creating <li>'s inside an <ol>
-            // create ol
-            let ul = document.createElement('ul')
-            // create li
-
-
-            for (let i = 0; i < tD.length; i++) {
-              clearContent()
-              let li = document.createElement('li')
-              let a = document.createElement('a')
-              let lat = `${tD[i].longitude}`
-              li.innerText += `Hike name: ${tD[i].name}, Location: ${tD[i].location}
-              Summary: ${tD[i].summary}
-              Length: ${tD[i].length} miles, Difficulty: ${tD[i].difficulty}
-              Highest Elevation: ${tD[i].high}ft, Lowest Elevation: ${tD[i].low}ft
-              Ascent: ${tD[i].ascent}ft, Descent: ${tD[i].descent}ft
-              Condition Status: ${tD[i].conditionStatus} from ${tD[i].conditionDate}.
-              Voted ${tD[i].stars} stars from ${tD[i].starVotes} reviews.
-              Local Weather: ${tD[i].longitude}
-              `
-              a.innerText += `More Information
-
-              `
-              a.href += `${tD[i].url}`
-              ul.appendChild(li)
-              ul.appendChild(a)
-            }
-            hikeList.appendChild(ul)
-            //** Input Data into list
-          })
+            return document.getElementById('hikeList').innerText = 'Find A Movie'
+          }
       })
-    //**      Input Difficulty & Distance of Hike     **//
+        //**      API - fetch location data from weatherUnlocked.     **//
   })
 
   function clearContent() {
@@ -214,6 +226,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
   /*     Set Distance in Local Storage function     */
 
+  // /*     Set Longitude of Hike in Local Storage function     */
+  // function setHikeLon(hikeLon) {
+  //   let inputHikeLon = document.getElementById('hikeLon')
+  //   localStorage.setItem('hikeLon', hikeLon)
+  // }
+  // /*     Set Longitude of Hike in Local Storage function     */
+  //
+  // /*     Set Latitude of Hike in Local Storage function     */
+  // function setHikeLat(hikeLat) {
+  //   let inputHikeLat = document.getElementById('hikeLat')
+  //   localStorage.setItem('hikeLat', hikeLat)
+  // }
+  // /*     Set Latitude of Hike in Local Storage function     */
+
   /*      Render latitude if it is stored in Local Storage      */
   function renderLat() {
     let lat = 0
@@ -249,6 +275,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
     return dist
   }
   /*      Render Distance if it is stored in Local Storage      */
+
+  // /*      Render Longitude of Hike if it is stored in Local Storage      */
+  // function renderHikeLon() {
+  //   let hikeLon = 0
+  //   const localHikeLon = localStorage.getItem('hikeLon')
+  //   hikeLon = localHikeLon
+  //   return hikeLon
+  // }
+  // /*      Render Longitude of Hike if it is stored in Local Storage      */
+  //
+  // /*      Render Latitude of Hike if it is stored in Local Storage      */
+  // function renderHikeLat() {
+  //   let hikeLat = 0
+  //   const localHikeLat = localStorage.getItem('hikeLat')
+  //   hikeLat = localHikeLat
+  //   return hikeLat
+  // }
+  // /*      Render Latitude of Hike if it is stored in Local Storage      */
 
   // let url2 = 'https://unsplash.com/search/photos/rain'
   // axios.get(url2)
