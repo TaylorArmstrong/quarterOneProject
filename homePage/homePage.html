@@ -24,7 +24,7 @@
           <label for='loc'>
           Location:<span class='required'></span>
           </label>
-          <input type='text' class='form-control' id='loc' style='width: 15%' placeholder='Boulder, CO' required>
+          <input type='text' class='form-control' id='loc' style='width: 15%' placeholder='City, State'>
           <label for='lat'>
           Latitude:<span class='required'></span>
           </label>
@@ -34,19 +34,22 @@
           </label>
           <input type='text' class='form-control' id='lon' style='width: 10%' placeholder='105.2705° W'>
         </div>
-        <div class='row2'>
-          <label for='dist'>
+          <div class='row2'>
+            <label for='dist'>
           Distance:<span class='required'></span>
           </label>
-          <input type='number' class='form-control' id='dist' style='width: 10%' placeholder='1, 5, 10 miles'>
-          <label for='min'>
+            <input type='number' class='form-control' id='dist' style='width: 10%' placeholder='1, 5, 10 miles'>
+            <label for='min'>
           Min Trail Length:<span class='required'></span>
           </label>
-          <input type='number' class='form-control' id='min' style='width: 20%' placeholder='1, 2, 3 ... miles'>
-        </div>
+            <input type='number' class='form-control' id='min' style='width: 20%' placeholder='1, 2, 3 ... miles'>
+            <label for='min'>
+          miles<span class='required'></span>
+          </label>
           </div>
-          <button type='submit' class='btn btn-primary'>Change Location</button>
-          <button href='' class='btn btn-primary'>More Info</button>
+        </div>
+        <button type='submit' class='btn btn-primary'>Change Location</button>
+        <button href='' class='btn btn-primary'>More Info</button>
     </form>
   </div>
 
@@ -54,9 +57,9 @@
 
   <!-- api -->
   <p id='weatherDescription'></p>
-<hr>
-<div class='hikes'>
-  <p class='hikeList' id='hikeList'>  </p>
+  <hr>
+  <div class='hikes'>
+    <p class='hikeList' id='hikeList'> </p>
   </div>
 </body>
 
