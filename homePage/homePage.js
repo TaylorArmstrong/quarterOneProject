@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     myFunction()
   }
   // Select the navbar
-  var navbar = document.getElementById('navbar')
+  const navbar = document.getElementById('navbar')
   // Select offset position of navbar
-  var sticky = navbar.offsetTop
+  const sticky = navbar.offsetTop
   // Add sticky class to navbar when you reach its' scroll position & remove 'sticky' when you leave the scroll position.
   function myFunction() {
     if (window.pageYOffset >= sticky) {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   renderMin()
   renderDist()
 
-  var form = document.getElementById('myForm')
+  const form = document.getElementById('myForm')
 
   form.addEventListener('focus', function(event) {
     event.target.style.background = 'pink'
@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let weatherList = document.querySelector('#weatherIcon p.weather-text')
         // console.log('weatherList', weatherList);
         document.getElementById('weatherDescription').innerText = `Your location is latitude: ${latitude}, longitude: ${longitude}. It is ${tempF}° Fahrenheit, but it feels like ${flTempF}° Fahrenheit. You currently have ${visibilityMiles} miles of visibility. The wind is blowing ${windDir} at ${windSpdMph} Mph. The current weather is ${weatherDesc}.`
-        console.log(response.data.wx_desc)
-        if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc === 'Sunny skies') || (response.data.wx_desc !== 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
+        // console.log(response.data.wx_desc)
+        if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc === 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
           //**      Input Difficulty & Distance of Hike     **//
           let url2 = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${dist}&minLength=${min}&key=112496723-8c25d2a96a12588709652b75e8813b84`
           axios.get(url2)
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       })
         //**      API - fetch location data from weatherUnlocked.     **//
   })
-
+})
   function clearContent() {
     while (hikeList.hasChildNodes()) {
       hikeList.removeChild(hikeList.childNodes[0])
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   /*     Set latitude in Local Storage function     */
   function setLat(lat) {
-    var inputLat = document.getElementById('lat')
+    const inputLat = document.getElementById('lat')
     localStorage.setItem('lat', inputLat.value)
   }
   /*     Set latitude in Local Storage function     */
@@ -321,5 +321,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //   fadeMeOut(item);
   // })
   // //**      Fade out Any Element you Click On     **//
-
-})
