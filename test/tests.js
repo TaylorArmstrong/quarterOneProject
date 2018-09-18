@@ -1,5 +1,25 @@
 const expect = chai.expect
 
+describe('navbar', function () {
+  it('is a div', function () {
+    expect(navbar).to.be.a('div')
+  })
+})
+
+describe('renderLat', function () {
+  it('is a function', function () {
+    expect(renderLat).to.be.a('function')
+  })
+  describe('Latitude', function () {
+    it('is a form Item', function () {
+      expect(formInput).to.be.a('form')
+    })
+    it('is a number', function () {
+      expect(inputLat.value).to.be.a('number')
+    })
+})
+})
+
 describe('calculator', function () {
   it('is an object', function () {
     expect(calculator).to.be.a('object')
