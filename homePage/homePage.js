@@ -81,15 +81,80 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Insert data into DOM, with some DOM creation/manipulation
         let weatherList = document.querySelector('#weatherIcon p.weather-text')
         document.getElementById('weatherDescription').innerText = `Your location is latitude: ${latitude}, longitude: ${longitude}. It is ${tempF}° Fahrenheit, but it feels like ${flTempF}° Fahrenheit. You currently have ${visibilityMiles} miles of visibility. The wind is blowing ${windDir} at ${windSpdMph} Mph. The current weather is ${weatherDesc}.`
-        if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc !== 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
+        if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc === 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
           //**      Input Difficulty & Distance of Hike     **//
           let url2 = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${dist}&minLength=${min}&key=112496723-8c25d2a96a12588709652b75e8813b84`
           axios.get(url2)
             .then((response) => {
               let tD = response.data.trails
-              if (response.data.trails.length === 0) {
+              if (tD.length === 0) {
                 let hikeList = document.getElementById('hikeList')
-                hikeList.innerText = 'No Hikes In This Area!'
+                hikeList.innerText = `No Hikes In This Area! Please Modify Your Search Parameters Or Find An Event!!!`
+                  // clearContent()
+                  clearMovieSearch()
+                  // let movies = document.querySelector('div .movies')
+                  let movies = document.getElementById('movieList')
+                  let input = document.createElement('INPUT')
+                  let submitMovie = document.createElement('button')
+                  input.setAttribute('type', 'text')
+                  input.setAttribute('class', 'form-control')
+                  input.setAttribute('id', 'movieSearch')
+                  input.setAttribute('placeholder', 'City Name')
+                  input.setAttribute('required', true)
+                  input.setAttribute('autofocus', true)
+                  submitMovie.setAttribute('type', 'submit')
+                  submitMovie.innerText = 'Find an Event Near You'
+                  movies.appendChild(input)
+                  movies.appendChild(submitMovie)
+                  // return document.getElementById('hikeList').innerText = 'Find A Movie'
+                  let form1 = document.getElementById('myForm1')
+
+                  form1.addEventListener('submit', function(event) {
+                    event.preventDefault()
+
+                    //**      input data to local storage on Submit     **//
+                    let inputMovie = document.getElementById('movieSearch')
+                    setMovie(inputMovie.value)
+                    renderMovie()
+
+                    let movie = localStorage.getItem('movie')
+                    //**      Input Difficulty & Distance of Hike     **//
+                    let url3 = `https://app.ticketmaster.com/discovery/v2/events.json?city=${movie}&apikey=XW7jDcSV45kxGpDV6GQRxxGvrmGssyz4`
+                    axios.get(url3)
+                      .then((response) => {
+                        console.log(response.status)
+                        console.log(response.data._embedded.events[0])
+                        let movies = document.getElementById('movieList')
+                        //** Input Data into list
+                        // loop over data, creating <li>'s inside an <ol>
+                        // create ol
+                        let ul = document.createElement('ul')
+                        // create li
+
+                        for (let i = 0; i < 10; i++) {
+                          clearContentMovie()
+                          let eList = response.data._embedded.events
+                          let li = document.createElement('li')
+                          let a = document.createElement('a')
+                          let img = document.createElement('img')
+                          img.setAttribute('width', '20%')
+                          li.innerText += `Event: ${eList[i].name}
+                      Date: ${eList[i].dates.start.dateTime}
+                      `
+                          a.innerText += `More Information
+
+                      `
+                          a.href += `${eList[i].url}`
+                          img.src += `${eList[i].images[1].url}`
+                          ul.appendChild(li)
+                          ul.appendChild(a)
+                          ul.appendChild(img)
+                        }
+                        movies.appendChild(ul)
+
+                        //** Input Data into list
+                      })
+                  })
               }
               //** Input Data into list
               // loop over data, creating <li>'s inside an <ol>
@@ -127,72 +192,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
               hikeList.appendChild(ul)
               //** Input Data into list
             })
-        } else {
-          clearContent()
-          clearMovieSearch()
-          // let movies = document.querySelector('div .movies')
-          let movies = document.getElementById('movieList')
-          let input = document.createElement('INPUT')
-          let submitMovie = document.createElement('button')
-          input.setAttribute('type', 'text')
-          input.setAttribute('class', 'form-control')
-          input.setAttribute('id', 'movieSearch')
-          input.setAttribute('placeholder', 'City Name')
-          input.setAttribute('required', true)
-          input.setAttribute('autofocus', true)
-          submitMovie.setAttribute('type', 'submit')
-          submitMovie.innerText = 'Find an Event Near You'
-          movies.appendChild(input)
-          movies.appendChild(submitMovie)
-          // return document.getElementById('hikeList').innerText = 'Find A Movie'
-          let form1 = document.getElementById('myForm1')
-
-          form1.addEventListener('submit', function(event) {
-            event.preventDefault()
-
-            //**      input data to local storage on Submit     **//
-            let inputMovie = document.getElementById('movieSearch')
-            setMovie(inputMovie.value)
-            renderMovie()
-
-            let movie = localStorage.getItem('movie')
-            //**      Input Difficulty & Distance of Hike     **//
-            let url3 = `https://app.ticketmaster.com/discovery/v2/events.json?city=${movie}&apikey=XW7jDcSV45kxGpDV6GQRxxGvrmGssyz4`
-            axios.get(url3)
-              .then((response) => {
-                console.log(response.status)
-                console.log(response.data._embedded.events[0])
-                let movies = document.getElementById('movieList')
-                //** Input Data into list
-                // loop over data, creating <li>'s inside an <ol>
-                // create ol
-                let ul = document.createElement('ul')
-                // create li
-
-                for (let i = 0; i < 10; i++) {
-                  clearContentMovie()
-                  let eList = response.data._embedded.events
-                  let li = document.createElement('li')
-                  let a = document.createElement('a')
-                  let img = document.createElement('img')
-                  img.setAttribute('width', '20%')
-                  li.innerText += `Event: ${eList[i].name}
-              Date: ${eList[i].dates.start.dateTime}
-              `
-                  a.innerText += `More Information
-
-              `
-                  a.href += `${eList[i].url}`
-                  img.src += `${eList[i].images[1].url}`
-                  ul.appendChild(li)
-                  ul.appendChild(a)
-                  ul.appendChild(img)
-                }
-                movies.appendChild(ul)
-
-                //** Input Data into list
-              })
-          })
         }
       })
     //**      API - fetch location data from weatherUnlocked.     **//
