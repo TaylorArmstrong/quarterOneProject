@@ -48,6 +48,26 @@ div.weatherInputs {
   width: 450px;
   font-size: 13pt;
 }
+#loc {
+  height: 20%;
+  width: 80px;
+}
+#lat {
+  height: 20%;
+  width: 60px;
+}
+#lon {
+  height: 20%;
+  width: 80px;
+}
+#dist {
+  height: 20%;
+  width: 120px;
+}
+#min {
+  height: 20%;
+  width: 120px;
+}
 /*      Current Weather widows       */
 #currentWeatherWidget {
  float: right;
@@ -109,6 +129,142 @@ input.custom {
   caret-color: red;
   font: 13px "Helvetica", "Arial", "sans-serif"
 }
+
+
+
+
+
+
+@media screen and (max-width:722px) {
+
+body {
+  margin: 0;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.header {
+  height: 50px;
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+div h2 {
+  font-size: 10pt;
+  position: top;
+  margin-top: 0;
+}
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  color: #f2f2f2;
+  /* width:auto; */
+}
+#navbar button {
+  float: left;
+  display: block;
+  background-color: #333;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 3px 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+#navbar button:hover {
+  background-color: #ddd;
+  color: black;
+  }
+#navbar button.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.content {
+  padding: 4px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.sticky + .content{
+  padding-top: 117px;
+}
+div.weatherInputs {
+  width: 250px;
+  font-size: 9pt;
+}
+label.loc {
+  display:none
+}
+#loc {
+  height: 20%;
+  width: 80px;
+  font-size: 8pt;
+}
+label.lat {
+  display:none
+}
+#lat {
+  height: 20%;
+  width: 60px;
+}
+label.lon {
+  display:none
+}
+#lon {
+  height: 20%;
+  width: 80px;
+}
+label.dist {
+  display:none
+}
+#dist {
+  height: 20%;
+  width: 120px;
+}
+label.min {
+  display:none
+}
+/* input::placeholder {
+  display:none;
+} */
+#min {
+  height: 20%;
+  width: 100px;
+}
+/*      Current Weather widows       */
+#currentWeatherWidget {
+ float: right;
+ width: 100px;
+ height: 90px;
+}
+div.card-content {
+ background-color: lightblue;
+ height: 60px;
+}
+p.currentWeather {
+  font-size: 20%;
+  text-align: right;
+  padding-right: 10%;
+  float:right;
+}
+p.currentTemp {
+  font-size: 80%;
+}
+p.currentFLTemp {
+  font-size: 20%;
+}
+p.windMeter {
+  text-align: right;
+  font-size: 20%;
+  padding-right: 10%
+}
+p.currentLatLon {
+  font-size: 20%;
+  text-align: right;
+  padding-right: 10%;
+  text: center;
+}}
 /* #currentWeatherWidget:onchange {
   display: visible;
 }  */
