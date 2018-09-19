@@ -1,21 +1,19 @@
 body {
   margin: 0;
-  font-size: 28px;
+  font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .header {
   background-color: #f1f1f1;
   padding: 30px;
   text-align: center;
 }
-
 #navbar {
   overflow: hidden;
   background-color: #333;
   color: #f2f2f2;
+  /* width:auto; */
 }
-
 #navbar button {
   float: left;
   display: block;
@@ -24,69 +22,47 @@ body {
   text-align: center;
   padding: 3px 4px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 13px;
+  font-weight: bold;
 }
-
 #navbar button:hover {
   background-color: #ddd;
   color: black;
   }
-
 #navbar button.active {
   background-color: #4CAF50;
   color: white;
 }
-
-#lat:valid {
-  color: #d8ffe3;
-}
-
-#lat:invalid {
-  color: #ffd3d3;
-}
-
-#lon:valid {
-  color: #d8ffe3;
-}
-
-#lon:invalid {
-  color: #ffd3d3;
-}
-#dist:valid {
-  color: #d8ffe3;
-}
-#min:valid {
-  color: #d8ffe3;
-}
-
 .content {
-  padding: 16px;
+  padding: 4px;
 }
-
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
 }
-
-.sticky + .content {
-  padding-top: 60px;
+.sticky + .content{
+  padding-top: 150px;
 }
-
-input.custom {
-  caret-color: red;
-  font: 16px "Helvetica", "Arial", "sans-serif"
+div.weatherInputs {
+  width: 450px;
+  font-size: 13pt;
 }
-#currentWeather{
-  /* height: 100%;
-  width: 100%; */
-  margin-left: 60%;
-  margin-right: 40%;
+/*      Current Weather widows       */
+#currentWeatherWidget {
+ float: right;
+ width: 270px;
+ height: 90px;
+}
+div.card-content {
+ background-color: lightblue;
+ height: 90px;
 }
 p.currentWeather {
   font-size: 40%;
   text-align: right;
   padding-right: 10%;
+  float:right;
 }
 p.currentTemp {
   font-size: 150%;
@@ -105,3 +81,34 @@ p.currentLatLon {
   padding-right: 10%;
   text: center;
 }
+
+/*      Field Modifications       */
+#loc:valid {
+  color: #d8ffe3;
+  font-size: 10pt;
+}
+#lat:valid {
+  color: #d8ffe3;
+}
+#lat:invalid {
+  color: #ffd3d3;
+}
+#lon:valid {
+  color: #d8ffe3;
+}
+#lon:invalid {
+  color: #ffd3d3;
+}
+#dist:valid {
+  color: #d8ffe3;
+}
+#min:valid {
+  color: #d8ffe3;
+}
+input.custom {
+  caret-color: red;
+  font: 13px "Helvetica", "Arial", "sans-serif"
+}
+/* #currentWeatherWidget:onchange {
+  display: visible;
+}  */

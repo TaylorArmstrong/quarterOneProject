@@ -3,19 +3,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   window.onscroll = function() {
     myFunction()
   }
-  // const navbar = document.getElementById('navbar')
   const heading = document.getElementById('heading')
   // Select offset position of navbar
-  // const sticky = navbar.offsetTop
   const sticky = heading.offsetTop
   // Add sticky class to navbar when you reach its' scroll position & remove 'sticky' when you leave the scroll position.
-  function myFunction() {
-    if (window.pageYOffset >= sticky) {
-      navbar.classList.add('sticky')
-    } else {
-      navbar.classList.remove('sticky');
-    }
-  }
   function myFunction() {
     if (window.pageYOffset >= sticky) {
       heading.classList.add('sticky')
@@ -96,12 +87,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // The current weather is ${weatherDesc}.
         // `
         document.getElementById('currentWeather').setAttribute('src', `set/${response.data.wx_icon}`)
-        document.querySelector('p.currentWeather').innerText = `${weatherDesc}`
+        document.querySelector('p.currentWeather').innerText = `${weatherDesc}
+        ${windSpdMph}Mph ${windDir}
+        lat/lon:
+                  ${latitude}/${longitude}`
         document.querySelector('p.currentTemp').innerText = `${tempF}°F`
         document.querySelector('p.currentFLTemp').innerText = `Feels Like: ${flTempF}°F`
-        document.querySelector('p.windMeter').innerText = `${windSpdMph}Mph ${windDir}`
-        document.querySelector('p.currentLatLon').innerText = `lat/lon:
-                  ${latitude}/${longitude}`
+        //document.querySelector('p.windMeter').innerText = `${windSpdMph}Mph ${windDir}`
+        // document.querySelector('p.currentLatLon').innerText = `lat/lon:
+        //           ${latitude}/${longitude}`
         // if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc !== 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
         if (response.data.wx_desc !== 'Blizzard') {
           //**      Input Difficulty & Distance of Hike     **//
