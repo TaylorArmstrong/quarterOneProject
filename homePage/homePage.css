@@ -38,19 +38,25 @@ body {
 }
 
 #lat:valid {
-  background-color: #d8ffe3;
+  color: #d8ffe3;
 }
 
 #lat:invalid {
-  background-color: #ffd3d3;
+  color: #ffd3d3;
 }
 
 #lon:valid {
-  background-color: #d8ffe3;
+  color: #d8ffe3;
 }
 
 #lon:invalid {
-  background-color: #ffd3d3;
+  color: #ffd3d3;
+}
+#dist:valid {
+  color: #d8ffe3;
+}
+#min:valid {
+  color: #d8ffe3;
 }
 
 .content {
@@ -65,4 +71,37 @@ body {
 
 .sticky + .content {
   padding-top: 60px;
+}
+
+input.custom {
+  caret-color: red;
+  font: 16px "Helvetica", "Arial", "sans-serif"
+}
+#currentWeather{
+  /* height: 100%;
+  width: 100%; */
+  margin-left: 60%;
+  margin-right: 40%;
+}
+p.currentWeather {
+  font-size: 40%;
+  text-align: right;
+  padding-right: 10%;
+}
+p.currentTemp {
+  font-size: 150%;
+}
+p.currentFLTemp {
+  font-size: 40%;
+}
+p.windMeter {
+  text-align: right;
+  font-size: 40%;
+  padding-right: 10%
+}
+p.currentLatLon {
+  font-size: 40%;
+  text-align: right;
+  padding-right: 10%;
+  text: center;
 }

@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   window.onscroll = function() {
     myFunction()
   }
-  const navbar = document.getElementById('navbar')
+  // const navbar = document.getElementById('navbar')
+  const heading = document.getElementById('heading')
   // Select offset position of navbar
-  const sticky = navbar.offsetTop
+  // const sticky = navbar.offsetTop
+  const sticky = heading.offsetTop
   // Add sticky class to navbar when you reach its' scroll position & remove 'sticky' when you leave the scroll position.
   function myFunction() {
     if (window.pageYOffset >= sticky) {
@@ -14,11 +16,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
       navbar.classList.remove('sticky');
     }
   }
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      heading.classList.add('sticky')
+    } else {
+      heading.classList.remove('sticky');
+    }
+  }
   //**      Navbar      **//
   const form = document.getElementById('myForm')
 
   form.addEventListener('focus', function(event) {
-    event.target.style.background = 'pink'
+    event.target.style.background = '#545454'
   }, true)
 
   form.addEventListener('blur', function(event) {
@@ -64,7 +73,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let url = `http://api.weatherunlocked.com/api/current/${lat},${lon}?app_id=8e567820&app_key=e231783424f10444f19408b224fbbbb9`
     axios.get(url)
       .then((response) => {
-
+        console.log(response.data)
+        console.log(response.data.wx_icon)
         let latitude = response.data.lat
         let longitude = response.data.lon
         // let flTempC = response.data.feelslike_c // feels like temperature in Celsius
@@ -77,11 +87,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let windSpdKmh = response.data.windspd_kmh // wind speed kmh
         let windSpdMph = response.data.windspd_mph // wind speed mph
         let weatherDesc = response.data.wx_desc // weather description
-
         // Insert data into DOM, with some DOM creation/manipulation
-        let weatherList = document.querySelector('#weatherIcon p.weather-text')
-        document.getElementById('weatherDescription').innerText = `Your location is latitude: ${latitude}, longitude: ${longitude}. It is ${tempF}° Fahrenheit, but it feels like ${flTempF}° Fahrenheit. You currently have ${visibilityMiles} miles of visibility. The wind is blowing ${windDir} at ${windSpdMph} Mph. The current weather is ${weatherDesc}.`
-        if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc === 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
+        // document.getElementById('weatherDescription').innerText = `Your location is latitude: ${latitude}, longitude: ${longitude}. It is ${tempF}° Fahrenheit, but it feels like ${flTempF}° Fahrenheit. You currently have ${visibilityMiles} miles of visibility. The wind is blowing ${windDir} at ${windSpdMph} Mph. The current weather is ${weatherDesc}.`
+        // document.getElementById('weatherDescription').innerText = `lat/lon: ${latitude}/${longitude}.
+        // Temp:(a/fl) ${tempF}°F/${flTempF}°F
+        // ${visibilityMiles} miles visibility
+        // Wind: ${windDir} at ${windSpdMph} Mph
+        // The current weather is ${weatherDesc}.
+        // `
+        document.getElementById('currentWeather').setAttribute('src', `set/${response.data.wx_icon}`)
+        document.querySelector('p.currentWeather').innerText = `${weatherDesc}`
+        document.querySelector('p.currentTemp').innerText = `${tempF}°F`
+        document.querySelector('p.currentFLTemp').innerText = `Feels Like: ${flTempF}°F`
+        document.querySelector('p.windMeter').innerText = `${windSpdMph}Mph ${windDir}`
+        document.querySelector('p.currentLatLon').innerText = `lat/lon:
+                  ${latitude}/${longitude}`
+        // if ((response.data.wx_desc === 'Partly cloudy') || (response.data.wx_desc !== 'Sunny skies') || (response.data.wx_desc === 'Clear skies') || (response.data.wx_desc === 'Cloudy') || (response.data.wx_desc === 'Overcast skies') || (response.data.wx_desc === 'Mostly cloudy')) {
+        if (response.data.wx_desc !== 'Blizzard') {
           //**      Input Difficulty & Distance of Hike     **//
           let url2 = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${dist}&minLength=${min}&key=112496723-8c25d2a96a12588709652b75e8813b84`
           axios.get(url2)
@@ -192,6 +214,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
               hikeList.appendChild(ul)
               //** Input Data into list
             })
+        } else {
+          document.getElementById('hikeList').innerText = 'Stay Inside and Watch A Movie!'
         }
       })
     //**      API - fetch location data from weatherUnlocked.     **//
