@@ -48,9 +48,11 @@ img #headerBanner {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000;
 }
 .sticky + .content{
   padding-top: 117px;
+  z-index: 1000;
 }
 div.weatherInputs {
   width: 450px;
@@ -258,9 +260,11 @@ div h2 {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000;
 }
 .sticky + .content{
   padding-top: 117px;
+  z-index: 1000;
 }
 div.weatherInputs {
   width: 250px;
