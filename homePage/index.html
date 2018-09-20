@@ -11,12 +11,12 @@
   <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
   <script src='homePage.js' charset='utf-8'></script>
   <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type='text/css' rel='stylesheet' href='css/materialize.min.css' media='screen,projection'/>
 
   <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
 </head>
 
 <body>
@@ -51,15 +51,13 @@
             Min Trail Length:<span class='required'></span>
           </label>
                 <input type='number' class='form-control custom min' id='min' placeholder='length (miles)'>
+                <button type='submit' class='btn btn-primary'>Change Location</button>
               </div>
             </div>
-            <button type='submit' class='btn btn-primary'>Change Location</button>
         </form>
       </div>
-      <div class='col currentWeatherWidget' id='currentWeatherWidget'>
-        <div class="card">
-          <div class="card-content">
-            <div class='row'>
+      <div class='col currentWeatherWidget card-content' id='currentWeatherWidget'>
+          <div class='row'>
               <div class='col s6'>
                 <p class='currentTemp'></p>
                 <p class='currentFLTemp'></p>
@@ -67,19 +65,19 @@
               <div class='col s6'>
                 <div class='row'>
                   <p class='currentWeather'></p>
-                  <img id='currentWeather' src='' style='float: right;'>
+                  <img id='currentWeather' src=''>
                 </div>
               </div>
             </div>
-            </div>
-            <!-- <div class="card-tabs">
-              <ul class="tabs tabs-fixed-width" style='background-color:inherit;'>
-                <li class="tab"><a class='active' href="#test4">Today</a></li>
-                <li class="tab"><a href="#Day2">Tomorrow</a></li>
-                <li class="tab"><a href="#Day3">Next Day</a></li>
+
+            <!-- <div class='card-tabs'>
+              <ul class='tabs tabs-fixed-width' style='background-color:inherit;'>
+                <li class='tab'><a class='active' href='#test4'>Today</a></li>
+                <li class='tab'><a href='#Day2'>Tomorrow</a></li>
+                <li class='tab'><a href='#Day3'>Next Day</a></li>
               </ul>
             </div> -->
-          </div>
+
         </div>
       </div>
     </div>
@@ -100,7 +98,7 @@
     </form>
   </div>
   <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type='text/javascript' src='js/materialize.min.js'></script>
 </body>
 
 </html>
