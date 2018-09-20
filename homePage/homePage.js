@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let url = `http://api.weatherunlocked.com/api/current/${lat},${lon}?app_id=8e567820&app_key=e231783424f10444f19408b224fbbbb9`
     axios.get(url)
       .then((response) => {
-        console.log(response.data)
-        console.log(response.data.wx_icon)
+        // console.log(response.data)
+        // console.log(response.data.wx_icon)
         let latitude = response.data.lat
         let longitude = response.data.lon
         // let flTempC = response.data.feelslike_c // feels like temperature in Celsius
@@ -175,10 +175,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
               // loop over data, creating <li>'s inside an <ol>
               // create ol
               let ul = document.createElement('ul')
+              console.log(tD)
               // create li
               for (let i = 0; i < tD.length; i++) {
                 clearContent()
                 clearMovieSearch()
+                let img = document.createElement('img')
                 let li = document.createElement('li')
                 let a = document.createElement('a')
                 let hikeLat = `${tD[i].latitude}`
@@ -201,6 +203,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     li.innerText += `Local Weather: ${response.data.wx_desc}`
                   })
                 a.href += `${tD[i].url}`
+                img.src += `${tD[i].imgSqSmall}`
+                ul.appendChild(img)
                 ul.appendChild(li)
                 ul.appendChild(a)
               }
