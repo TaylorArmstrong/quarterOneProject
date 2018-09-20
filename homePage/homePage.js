@@ -89,8 +89,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('currentWeather').setAttribute('src', `set/${response.data.wx_icon}`)
         document.querySelector('p.currentWeather').innerText = `${weatherDesc}
         ${windSpdMph}Mph ${windDir}
-        lat/lon:
-                  ${latitude}/${longitude}`
+        ${latitude}/${longitude}`
         document.querySelector('p.currentTemp').innerText = `${tempF}°F`
         document.querySelector('p.currentFLTemp').innerText = `Feels Like: ${flTempF}°F`
         //document.querySelector('p.windMeter').innerText = `${windSpdMph}Mph ${windDir}`
