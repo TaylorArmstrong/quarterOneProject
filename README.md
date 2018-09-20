@@ -10,5 +10,4 @@
   - If you search parameters are too narrow or there are no hikes in your search area, a new field will populate to search for events in the city of your choosing.
 
   - Please type a city name in the search field and press 'Find an Event Near You'.
-  ![eventSearch]
-  (https://github.com/TaylorArmstrong/quarterOneProject/readMeScreenShots/eventSearch.png)
+  ![eventSearch](/quarterOneProject/readMeScreenShots/eventSearch.png)
