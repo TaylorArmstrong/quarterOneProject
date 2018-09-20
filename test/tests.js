@@ -1,5 +1,11 @@
 const expect = chai.expect
 
+describe('check tests are running', () => {
+  it('Check Tests running', () => {
+    expect(true).to.equal(true);
+  })
+})
+
 describe('main', () => {
   if (console) console.log('testing main')
 })
