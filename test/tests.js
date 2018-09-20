@@ -35,6 +35,10 @@ describe('Latitude', function() {
     it('is a function', function() {
       expect(setLat).to.be.a('function')
     })
+    it('does return a div dom element', function() {
+      let div = setLat('lat')
+      expect(div.tagName).to.equal('DIV')
+    })
   })
 
   describe('renderLat', function() {

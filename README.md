@@ -12,3 +12,8 @@
 
   - Please type a city name in the search field and press 'Find an Event Near You'.
   ![eventSearch](/readMePhoto/eventSearch.png)
+
+  - This will then populate a list of events near you if weather is preventing you from wanting to hike.
+  ![eventSearch](/readMePhoto/eventResults.png)
+
+  - At any time you can modify your hike search parameters and modify the search results to find more hikes.
