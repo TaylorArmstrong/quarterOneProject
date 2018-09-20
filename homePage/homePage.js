@@ -180,13 +180,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
               for (let i = 0; i < tD.length; i++) {
                 clearContent()
                 clearMovieSearch()
-                let img = document.createElement('img')
                 let li = document.createElement('li')
-                let a = document.createElement('a')
+                let hikeRow = document.createElement('div')
+                hikeRow.setAttribute('class', 'row')
+                let hikeCol1 = document.createElement('div')
+                hikeCol1.setAttribute('class', 'col')
+                let img = document.createElement('img')
+                let hikeCol2 = document.createElement('div')
+                hikeCol2.setAttribute('class', 'col')
+                let hikeP = document.createElement('p')
+                hikeP.setAttribute('class', 'hikeInformation')
+                let hikeA = document.createElement('a')
+                let hikeCol3 = document.createElement('div')
+                hikeCol3.setAttribute('class', 'col')
+                let hikeWeather = document.createElement('div')
+                hikeWeather.setAttribute('class', 'col currentHikeWeatherWidget hikeCard-Content')
+                let hikeWeatherRow = document.createElement('div')
+                hikeWeatherRow.setAttribute('class', 'row')
+                let hikeWeatherCol1 = document.createElement('div')
+                hikeWeatherCol1.setAttribute('class', 'col s6')
+                let hikeCurrentTemp = document.createElement('p')
+                hikeCurrentTemp.setAttribute('class', 'currentHikeTemp')
+                let hikeFLTemp = document.createElement('p')
+                hikeFLTemp.setAttribute('class', 'hikeFLTemp')
+                let hikeWeatherCol2 = document.createElement('div')
+                hikeWeatherCol2.setAttribute('class', 'col s6')
+                let hikeCurrentWeather = document.createElement('p')
+                hikeCurrentWeather.setAttribute('class', 'hikeCurrentWeather')
+                let hikeCurrentWeatherImg = document.createElement('IMG')
+                hikeCurrentWeatherImg.setAttribute('ID', 'hikeCurrentWeatherImg')
                 let hikeLat = `${tD[i].latitude}`
                 let hikeLon = `${tD[i].longitude}`
 
-                li.innerText += `Hike name: ${tD[i].name}, Location: ${tD[i].location}
+                hikeP.innerText += `Hike name: ${tD[i].name}, Location: ${tD[i].location}
                 Summary: ${tD[i].summary}
                 Length: ${tD[i].length} miles, Difficulty: ${tD[i].difficulty}
                 Highest Elevation: ${tD[i].high}ft, Lowest Elevation: ${tD[i].low}ft
@@ -194,19 +220,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 Condition Status: ${tD[i].conditionStatus} from ${tD[i].conditionDate}.
                 Voted ${tD[i].stars} stars from ${tD[i].starVotes} reviews.
                 `
-                a.innerText += `More Information
+                hikeA.innerText += `More Information
 
                 `
                 let url = `http://api.weatherunlocked.com/api/current/${hikeLat},${hikeLon}?app_id=8e567820&app_key=e231783424f10444f19408b224fbbbb9`
                 axios.get(url)
                   .then((response) => {
-                    li.innerText += `Local Weather: ${response.data.wx_desc}`
+                    console.log(response.data)
+                    hikeCurrentTemp.innerText += `${response.data.temp_f}°F`
+                    hikeFLTemp.innerText += `Feels Like: ${response.data.feelslike_f}°F`
+                    hikeCurrentWeather.innerText += response.data.wx_desc
+                    document.getElementById('hikeCurrentWeatherImg').setAttribute('src', `set/${response.data.wx_icon}`)
                   })
-                a.href += `${tD[i].url}`
+                hikeA.href += `${tD[i].url}`
                 img.src += `${tD[i].imgSqSmall}`
-                ul.appendChild(img)
+
+                hikeCol1.appendChild(img)
+                hikeRow.appendChild(hikeCol1)
+                hikeCol2.appendChild(hikeP)
+                hikeCol2.appendChild(hikeA)
+                hikeRow.appendChild(hikeCol2)
+                hikeWeatherCol1.appendChild(hikeCurrentTemp)
+                hikeWeatherCol1.appendChild(hikeFLTemp)
+                hikeWeatherRow.appendChild(hikeWeatherCol1)
+                hikeWeatherCol2.appendChild(hikeCurrentWeather)
+                hikeWeatherCol2.appendChild(hikeCurrentWeatherImg)
+                hikeWeatherRow.appendChild(hikeWeatherCol2)
+                hikeWeather.appendChild(hikeWeatherRow)
+                hikeCol3.appendChild(hikeWeather)
+                hikeRow.appendChild(hikeCol3)
+                li.appendChild(hikeRow)
                 ul.appendChild(li)
-                ul.appendChild(a)
               }
               hikeList.appendChild(ul)
               //** Input Data into list
