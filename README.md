@@ -11,4 +11,4 @@
 
   - Please type a city name in the search field and press 'Find an Event Near You'.
   1[eventSearch]
-  (https://octodex.github.com/quarterOneProject/readMeScreenShots/eventSearch.png)
+  (https://github.com/TaylorArmstrong/quarterOneProject/readMeScreenShots/eventSearch.png)
