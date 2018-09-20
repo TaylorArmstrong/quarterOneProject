@@ -6,6 +6,7 @@
   - If you would like to include a search radius and minimum trail length you can do this as well (distances in miles), although this is not necessary.
   - Select Change location to populate the current weather at your location, as well as a list of hikes matching your search parameters
     a) The List will include the name of the hike, a brief summary, length of the hike, difficulty, highest and lowest elevations as well as the overall ascent and descent distances. Similarly there will be some information from past hikers about current conditions and a rating based off a 5 star scale. A 'More Information' link for the hike on REI's hiking project will also be populated.
+    ![Hike Results](/readMePhoto/hikeResults.png)
 
   - If you search parameters are too narrow or there are no hikes in your search area, a new field will populate to search for events in the city of your choosing.
 
