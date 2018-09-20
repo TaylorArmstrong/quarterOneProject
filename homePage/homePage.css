@@ -18,7 +18,7 @@ img #headerBanner {
   overflow: hidden;
   background-color: #333;
   color: #f2f2f2;
-  /* width:auto; */
+  width:auto;
 }
 #navbar button {
   float: left;
@@ -325,6 +325,8 @@ div.card-content {
   left: 8px;
   background-color:white;
   border-radius: 100%;
+  width:43px;
+  height:31px;
 }
 p.currentWeather {
   font-size: 30%;
@@ -346,8 +348,44 @@ p.currentFLTemp {
   top: -10px;
   left: -2px;
 }
+p.hikeInformation{
+  width: auto;
+}
 div.hikeCard-Content {
   background-color: lightblue;
+  width: 130px;
+  height: 130px;
+
+}
+p.currentHikeTemp {
+  font-size: 150%;
+  position: relative;
+  top: 0px;
+  left: -8px;
+  color: black;
+}
+p.hikeFLTemp {
+  font-size: 60%;
+  text-align: left;
+  position: relative;
+  top: -29px;
+  left: -5px;
+  color: white;
+}
+p.hikeCurrentWeather {
+  font-size: 60%;
+  text-align: right;
+  position: relative;
+  top: 63px;
+  left: 0px;
+  color: grey;
+}
+#hikeCurrentWeatherImg {
+  position: relative;
+  top: -54px;
+  left: 6px;
+  background-color:white;
+  border-radius: 100%;
 }
 /* p.windMeter {
   text-align: right;
