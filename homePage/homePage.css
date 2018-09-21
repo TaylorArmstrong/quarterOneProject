@@ -387,20 +387,4 @@ p.hikeCurrentWeather {
   background-color:white;
   border-radius: 100%;
 }
-/* p.windMeter {
-  text-align: right;
-  font-size: 20%;
-  padding-right: 10%
-} */
-/* p.currentLatLon {
-  font-size: 20%;
-  position: relative;
-  top: 0px;
-  left: 12px;
-  text: center;
-} */
-
 }
-/* #currentWeatherWidget:onchange {
-  display: visible;
-}  */

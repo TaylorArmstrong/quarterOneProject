@@ -295,12 +295,12 @@ function setLon(lon) {
 }
 /*     Set longitude in Local Storage function     */
 
-/*     Set Difficulty in Local Storage function     */
+/*     Set Min Trail Length in Local Storage function     */
 function setMin(min) {
   let inputMin = document.getElementById('min')
   localStorage.setItem('min', min)
 }
-/*     Set Difficulty in Local Storage function     */
+/*     Set Min Trail Length in Local Storage function     */
 
 /*     Set Distance in Local Storage function     */
 function setDist(dist) {
@@ -309,12 +309,12 @@ function setDist(dist) {
 }
 /*     Set Distance in Local Storage function     */
 
-/*     Set Event Search City in Local Storage function     */
+/*     Set Event/Movie Search City in Local Storage function     */
 function setMovie(movie) {
   let inputMovie = document.getElementById('movieSearch').value
   localStorage.setItem('movie', movie)
 }
-/*     Set Event Search City in Local Storage function     */
+/*     Set Event/Movie Search City in Local Storage function     */
 
 /*      Render latitude if it is stored in Local Storage      */
 function renderLat() {
@@ -334,14 +334,14 @@ function renderLon() {
 }
 /*      Render longitude if it is stored in Local Storage      */
 
-/*      Render minLength if it is stored in Local Storage      */
+/*      Render Min Trail Length if it is stored in Local Storage      */
 function renderMin() {
   let min = 0
   const localMin = localStorage.getItem('min')
   min = localMin
   return min
 }
-/*      Render minLength if it is stored in Local Storage      */
+/*      Render Min Trail Length if it is stored in Local Storage      */
 
 /*      Render Distance if it is stored in Local Storage      */
 function renderDist() {
@@ -352,24 +352,20 @@ function renderDist() {
 }
 /*      Render Distance if it is stored in Local Storage      */
 
-/*      Render Distance if it is stored in Local Storage      */
+/*      Render Event/Movie Search City if it is stored in Local Storage      */
 function renderMovie() {
   let movie = 0
   const localMovie = localStorage.getItem('movie')
   movie = localMovie
   return movie
 }
-/*      Render Distance if it is stored in Local Storage      */
+/*      Render Event/Movie Search City if it is stored in Local Storage      */
 
-// let url2 = 'https://unsplash.com/search/photos/rain'
-// axios.get(url2)
-// .then((response) => {
-// console.log(response.status)
-// console.log(response.data)
-// })
+
+
+
 
 // //**      Fade out Any Element you Click On     **//
-//
 // function fadeMeOut(item) {
 //   let op = 1;
 //   item.style.opacity = 1;
@@ -382,7 +378,6 @@ function renderMovie() {
 //     clearInterval(fadeOut)
 //   }
 // }
-//
 // document.addEventListener('click', function(event) {
 //   let item = event.target;
 //   fadeMeOut(item);
