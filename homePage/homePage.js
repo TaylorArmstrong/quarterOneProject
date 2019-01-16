@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     hikeCurrentTemp.innerText += `${response.data.temp_f}°F`
                     hikeFLTemp.innerText += `Feels Like: ${response.data.feelslike_f}°F`
                     hikeCurrentWeather.innerText += response.data.wx_desc
-                    document.getElementById('hikeCurrentWeatherImg').setAttribute('src', `set/${response.data.wx_icon}`)
+                    document.querySelectorAll('img#hikeCurrentWeatherImg').forEach(x => x.setAttribute('src', `set/${response.data.wx_icon}`))
                   })
                 hikeA.href += `${tD[i].url}`
                 img.src += `${tD[i].imgSqSmall}`
